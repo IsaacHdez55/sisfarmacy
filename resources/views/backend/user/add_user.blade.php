@@ -51,7 +51,7 @@
 <div class="form-group">
 	<label class="">User Name<span class="text-danger">*</span></label>
 	<div class="">
-		<input type="text" name="name" pattern="^[a-zA-Z]"  title="Special characters are not allowed" class="form-control" required>
+		<input type="text" name="name" class="form-control" required>
 	</div>
 </div>
 

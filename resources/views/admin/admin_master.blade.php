@@ -151,7 +151,11 @@
 				    }
     			});
     		});
-		</script>	
+		</script>
+
+		<!-- Mask JS -->
+		<script src="{{ asset('backend/js/jquery.maskedinput.min.js') }}"></script>
+        <script src="{{ asset('backend/js/mask.js') }}"></script>
 
 		@yield('js')
 		

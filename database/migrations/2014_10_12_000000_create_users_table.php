@@ -22,8 +22,6 @@ class CreateUsersTable extends Migration
             $table->string('address')->nullable();
             $table->string('gender')->nullable();
             $table->string('image')->nullable();
-            $table->tinyInteger('status')->default(1)->comment('0=inactive, 1=active');
-            $table->string('last_login')->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();

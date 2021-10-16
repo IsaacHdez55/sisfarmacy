@@ -31,6 +31,21 @@ $route = Route::current()->getName();
 		              <li><a class="{{ ($route == 'password.view')?'active':'' }}" href="{{ route('password.view') }}"> Change Password</a></li>
 		            </ul>
 		        </li>
+		        <li class="submenu {{ ($prefix == 'contact')?'active':'' }}" >
+		            <a href=""><i class="la la-address-book"></i> <span> Manage Contact</span> <span class="menu-arrow"></span></a>
+		            <ul style="display: none;">
+		              <li><a class="{{ ($route == 'supplier.view')?'active':'' }}" href="{{ route('supplier.view') }}"> Suppliers</a><li>
+		              <li><a class="{{ ($route == 'client.view')?'active':'' }}" href="{{ route('client.view') }}"> Client</a><li>
+		            </ul>
+		        </li>
+		        <li class="submenu {{ ($prefix == '/products')?'active':'' }}" >
+		            <a href=""><i class="la la-boxes"></i> <span> Manage Product</span> <span class="menu-arrow"></span></a>
+		            <ul style="display: none;">
+		              <li><a class="{{ ($route == 'categories.view')?'active':'' }}" href="{{ route('categories.view') }}"> Categories</a><li>
+		              <li><a class="{{ ($route == 'brands.view')?'active':'' }}" href="{{ route('brands.view') }}"> Brands</a>
+		              <li><a class="{{ ($route == 'units.view')?'active':'' }}" href="{{ route('units.view') }}"> Units</a>
+		            </ul>
+		        </li>
 
 			</ul>
 		</div>

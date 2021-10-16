@@ -99,26 +99,5 @@ class UserController extends Controller
 
     }
 
-    public function ChangeStatus($id){
-
-        $user = User::find($id);
-
-        if ($user->status == '1') {
-            
-            $user->status = '0';
-
-            $user->save();
-
-            return redirect()->back();
-
-        }else{
-
-            $user->status = '1';
-
-            $user->save();
-
-            return redirect()->back();
-        }
-
-    }
+    
 }
