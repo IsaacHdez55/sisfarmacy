@@ -42,6 +42,7 @@
 								<th>Email</th>
 								<th>Image</th>
 								<th>Usertype</th>
+								<th>Last Login</th>
 								<th>Action</th>
 							</tr>
 						</thead>
@@ -55,6 +56,7 @@
 									<td>{{ $user->email }}</td>
 									<td><img alt="{{ $user->name }}" src="{{ (!empty($user->image))? url('upload/user_images/'.$user->image):url('upload/user.jpg') }}" style="width: 60px;"></td>
 									<td>{{ $user->usertype }}</td>
+									<td>{{ $user->last_login }}</td>
 									<td>
 										
 										<a href="{{ route('users.edit', $user->id) }}" class="btn btn-info"><i class="fa fa-edit"></i></a>
