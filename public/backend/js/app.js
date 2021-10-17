@@ -69,12 +69,12 @@ $(document).ready(function() {
 	
 	// Select 2
 	
-	if($('.select').length > 0) {
-		$('.select').select2({
-			minimumResultsForSearch: -1,
-			width: '100%'
-		});
-	}
+	// if($('.select').length > 0) {
+	// 	$('.select').select2({
+	// 		minimumResultsForSearch: -1,
+	// 		width: '100%'
+	// 	});
+	// }
 	
 	// Modal Popup hide show
 
@@ -136,7 +136,7 @@ $(document).ready(function() {
 	
 	if($('.datetimepicker').length > 0) {
 		$('.datetimepicker').datetimepicker({
-			format: 'DD/MM/YYYY',
+			format: 'YYYY-MM-DD',
 			icons: {
 				up: "fa fa-angle-up",
 				down: "fa fa-angle-down",

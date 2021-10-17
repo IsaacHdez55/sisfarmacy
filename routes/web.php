@@ -9,6 +9,7 @@ use App\Http\Controllers\backend\ClientController;
 use App\Http\Controllers\backend\CategoryController;
 use App\Http\Controllers\backend\BrandController;
 use App\Http\Controllers\backend\UnitController;
+use App\Http\Controllers\backend\ProductController;
 
 /*
 |--------------------------------------------------------------------------
@@ -111,5 +112,15 @@ Route::prefix('products')->group(function (){
     Route::get('/units/edit/{id}', [UnitController::class, 'UnitEdit'])->name('unit.edit');
     Route::post('/units/update/{id}', [UnitController::class, 'UnitUpdate'])->name('unit.update');
     Route::get('/units/delete/{id}', [UnitController::class, 'UnitDelete'])->name('unit.delete');
+
+    // Product Management Route
+
+    Route::get('/product/view', [ProductController::class, 'ProductView'])->name('product.view');
+    Route::get('/product/add', [ProductController::class, 'ProductAdd'])->name('product.add');
+    Route::post('/product/store', [ProductController::class, 'ProductStore'])->name('product.store');
+    Route::get('/product/edit/{id}', [ProductController::class, 'ProductEdit'])->name('product.edit');
+    Route::post('/product/update/{id}', [ProductController::class, 'ProductUpdate'])->name('product.update');
+    Route::get('/product/delete/{id}', [ProductController::class, 'ProductDelete'])->name('product.delete');
+    Route::get('/product/details/{id}', [ProductController::class, 'ProductDetails'])->name('product.details');
 
 });

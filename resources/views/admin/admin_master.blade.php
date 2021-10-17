@@ -33,6 +33,12 @@
 		<!-- Dropify -->
   		<link rel="stylesheet" href="{{ asset('https://cdnjs.cloudflare.com/ajax/libs/Dropify/0.2.2/css/dropify.min.css') }}" integrity="sha512-EZSUkJWTjzDlspOoPSpUFR0o0Xy7jdzW//6qhUkoZ9c4StFkVsp9fbbd0O06p9ELS3H486m4wmrCELjza4JEog==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
+  		<!-- Select2 CSS -->
+		<link rel="stylesheet" href="{{ asset('backend/css/select2.min.css') }}">
+
+		<!-- Datetimepicker CSS -->
+		<link rel="stylesheet" href="{{ asset('backend/css/bootstrap-datetimepicker.min.css') }}">
+
         @yield('css')
 
     </head>
@@ -156,6 +162,16 @@
 		<!-- Mask JS -->
 		<script src="{{ asset('backend/js/jquery.maskedinput.min.js') }}"></script>
         <script src="{{ asset('backend/js/mask.js') }}"></script>
+
+        <!-- Select2 JS -->
+		<script src="{{ asset('backend/js/select2.min.js') }}"></script>
+
+		<!-- JQuery Number JS -->
+		<script src="{{ asset('backend/js/jquerynumber.min.js') }}"></script>
+
+		<!-- Datetimepicker JS -->
+		<script src="{{ asset('backend/js/moment.min.js') }}"></script>
+		<script src="{{ asset('backend/js/bootstrap-datetimepicker.min.js') }}"></script>
 
 		@yield('js')
 		
