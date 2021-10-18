@@ -45,6 +45,7 @@ $route = Route::current()->getName();
 		              <li><a class="{{ ($route == 'brands.view')?'active':'' }}" href="{{ route('brands.view') }}"> Brands</a>
 		              <li><a class="{{ ($route == 'units.view')?'active':'' }}" href="{{ route('units.view') }}"> Units</a>
 		              <li><a class="{{ ($route == 'product.view')?'active':'' }}" href="{{ route('product.view') }}"> Products</a>
+		              	<li><a class="{{ ($route == 'printLabels.view')?'active':'' }}" href="{{ route('printLabels.view') }}"> Print Labels</a>
 		            </ul>
 		        </li>
 

@@ -8,6 +8,7 @@ use App\Models\Product;
 use App\Models\Brand;
 use App\Models\Category;
 use App\Models\Unit;
+use PDF;
 
 class ProductController extends Controller
 {
@@ -149,6 +150,28 @@ class ProductController extends Controller
         $data['detailsData'] = Product::find($id);
 
         return view('backend.product.details_product', $data);
+
+    }
+
+    public function pdf(){
+
+        $data['allData'] = Product::all();
+
+        $pdf = PDF::loadView('backend.product.pdf',$data);
+        // $pdf->loadHTML('<h1>Test</h1>');
+        // return $pdf->setPaper('a4','landscape')->stream();
+        return $pdf->setPaper('a4','landscape')->download('Produtcs.pdf');
+
+    }
+
+    public function barcode(){
+
+        // $data['allData'] = Product::all();
+
+        // dd($data);
+        
+        // $barcode = new DNS1D();
+        // $barcode->getBarcodeHTML('9780691147727', 'EAN13');
 
     }
 

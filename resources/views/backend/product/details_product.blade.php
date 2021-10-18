@@ -27,13 +27,6 @@
 						<li class="breadcrumb-item active">Details Product</li>
 					</ul>
 				</div>
-				<div class="col-auto float-right ml-auto">
-					<div class="btn-group btn-group-sm">
-						<button class="btn btn-white">CSV</button>
-						<button class="btn btn-white">PDF</button>
-						<button class="btn btn-white"><i class="fa fa-print fa-lg"></i> Print</button>
-					</div>
-				</div>
 			</div>
 		</div>
 		<!-- /Page Header -->
@@ -73,6 +66,7 @@
 							</div>
 							<div class="col-sm-6 m-b-20">
 								<div class="invoice-details">
+									<div>{!! DNS1D::getBarcodeHTML($detailsData->product_code, 'EAN13') !!}</div></br>
 									<h3 class="text-uppercase">Code {{ $detailsData->product_code }}</h3>
 									<ul class="list-unstyled">
 										<li>Create Date: <span>{{ $detailsData->created_at }}</span></li>

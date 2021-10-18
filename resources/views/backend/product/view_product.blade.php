@@ -22,8 +22,12 @@
 				</div>
 				<div class="col-auto float-right ml-auto">
 					<a href="{{ route('product.add') }}" class="btn add-btn"><i class="fa fa-plus"></i> Add Product</a>
+
+					<a href="{{ route('product.pdf') }}" {{-- target="_blank" --}} class="btn btn-info"><i class="fa fa-file"></i> PDF</a>
+					&nbsp;
 				</div>
 			</div>
+
 		</div>
 		<!-- /Page Header -->
 		

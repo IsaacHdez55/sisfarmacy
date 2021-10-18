@@ -193,7 +193,7 @@
 
 <div class="form-group">
 	<label class="">Product Stock<span class="text-danger">*</span></label>
-	<input type="number" name="product_stok" class="form-control" value="{{ old('product_stok') }}" placeholder="Product Stock" required>
+	<input type="number" name="product_stock" class="form-control" value="{{ old('product_stock') }}" placeholder="Product Stock" required>
 </div>
 
 										</div>{{-- End col-md-6 --}}

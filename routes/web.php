@@ -10,6 +10,7 @@ use App\Http\Controllers\backend\CategoryController;
 use App\Http\Controllers\backend\BrandController;
 use App\Http\Controllers\backend\UnitController;
 use App\Http\Controllers\backend\ProductController;
+use App\Http\Controllers\backend\PrintLabelsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -122,5 +123,11 @@ Route::prefix('products')->group(function (){
     Route::post('/product/update/{id}', [ProductController::class, 'ProductUpdate'])->name('product.update');
     Route::get('/product/delete/{id}', [ProductController::class, 'ProductDelete'])->name('product.delete');
     Route::get('/product/details/{id}', [ProductController::class, 'ProductDetails'])->name('product.details');
+    Route::get('/product/pdf', [ProductController::class, 'pdf'])->name('product.pdf');
+
+    // Print Labels Management Route
+
+    Route::get('/printLabls/view', [PrintLabelsController::class, 'PrintLabelsView'])->name('printLabels.view');
+    Route::get('/printLabls/search', [PrintLabelsController::class, 'PrintLabelsSearch'])->name('printLabels.search');
 
 });
