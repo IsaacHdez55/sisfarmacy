@@ -7,7 +7,7 @@
 		{{-- <meta name="keywords" content="admin, estimates, bootstrap, business, corporate, creative, management, minimal, modern, accounts, invoice, html5, responsive, CRM, Projects"> --}}
         <meta name="author" content="SISFARMACY - Isaac Hernandez">
         <meta name="robots" content="noindex, nofollow">
-        <title>SISFARMACY | @yield('title')</title>
+        <title>@yield('title') | SISFARMACY</title>
 		
 		<!-- Favicon -->
         <link rel="shortcut icon" type="image/x-icon" href="{{ asset('backend/img/favicon.png') }}">

@@ -128,6 +128,6 @@ Route::prefix('products')->group(function (){
     // Print Labels Management Route
 
     Route::get('/printLabls/view', [PrintLabelsController::class, 'PrintLabelsView'])->name('printLabels.view');
-    Route::get('/printLabls/search', [PrintLabelsController::class, 'PrintLabelsSearch'])->name('printLabels.search');
+    Route::get('/printLabls/search', [PrintLabelsController::class, 'PrintLabelsSearch'])->name('search');
 
 });

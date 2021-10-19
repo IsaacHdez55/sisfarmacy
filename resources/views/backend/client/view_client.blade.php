@@ -56,7 +56,7 @@
 									<td>{{ $client->client_name }}</td>
 									<td>{{ $client->client_phone }}</td>
 									<td>{{ $client->client_email }}</td>
-									<td>{{ $client->client_address }}</td>
+									<td >{{ $client->client_address }}</td>
 									<td>{{ $client->client_total_purchases }}</td>
 									<td>{{ $client->client_last_pruchase }}</td>
 									<td>

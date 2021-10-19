@@ -43,7 +43,7 @@
 
 						<div class="row justify-content-center">					
 
-							<div class="col-md-6">
+							<div class="col-md-8">
 
 								<form action="">
 
@@ -52,17 +52,45 @@
 		<div class="input-group-prepend">
 			<span class="input-group-text"><i class="fa fa-search"></i></span>
 		</div>
-		<input type="text" id="search" class="form-control" placeholder="Enter the names of the products to print the labels" required>
+		<input type="text" id="search" class="form-control " placeholder="Search..." required>
 	</div>
 </div>
 
 								</form>
 
-							</div>
+							</div> {{-- .col-md-8 --}}
 
-						</div>
+							<div class="col-md-8">
+
+								<div class="table-responsive">
+
+									<table id="PrintLabels" class="table table-striped custom-table  mb-0">
+
+										<thead>
+											<tr>
+												<th>Product</th>
+												<th>N° of Labels</th>
+											</tr>
+										</thead>
+
+										<tbody>
+											
+										</tbody>
+
+									</table>
+
+								</div>
+
+							</div> {{-- .col-md-8 --}}
+
+						</div> {{-- .row --}}
 
 					</div>
+
+					<div class="card-footer">
+						<a href="#" id="print" class="btn btn-primary"><i class="fa fa-print"></i> Print</a>
+					</div>
+
 				</div>
 			</div>
 		</div>
@@ -84,28 +112,50 @@
 
 <script>
 
-	
+	$(document).ready(function() {
+  	
+	    src = "{{ route('search') }}";
 
-	$('#search').autocomplete({
+	     $("#search").autocomplete({
 
-		source:function(request, response){
+	        source: function(request, response) {
 
-			$.ajax({
+	            $.ajax({
+	                url: src,
+	                dataType: "json",
+	                data: {
+	                    term : request.term
+	                },
+	                success: function(data) {
 
-				url: '{{ route('printLabels.search') }}',
-				dataType: 'json',
-				data: {
-					ser: request.ser
-				},
-				success: function(data){
+	                    response(data);
+	              
+	                }
+	            });
+	        },
 
-					response(data)
+	        minLength: 3,
 
-				}
+	        select: function( event, ui ) {
 
-			});
+	        	var name = ui.item.label;
+	        	
+	        	$("#PrintLabels>tbody").append("<tr><td id='cantity'  style='width:70%'>" + name +"</td><td><input id='' class='form-control' name='cantity[]' type='number' value='1'></td></tr>");
 
-		}
+	        	$(this).val(''); return false;
+
+	        }
+
+
+	       
+	    });
+
+	});
+
+	$('#print').on('click', function() {
+
+		var print = $('#cantity').val();
+		console.log("print", print);
 
 	});
 

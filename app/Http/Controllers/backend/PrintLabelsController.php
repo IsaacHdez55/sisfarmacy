@@ -16,11 +16,24 @@ class PrintLabelsController extends Controller
 
     public function PrintLabelsSearch(Request $request){
 
-        $ser = $request->get('ser');
+        $query = $request->get('term','');
+        
+        $products = Product::where('product_name','LIKE','%'.$query.'%')->get();
+        
+        $data=array();
 
-        $querys = Product::where('product_name', 'LIKE', '%' . $ser . '%')->select('product_name as label')->get();
+        foreach ($products as $product) {
+                $data[]=array('value'=>$product->product_name,'id'=>$product->id);
+        }
 
-        return $querys;
+        if(count($data))
+
+             return $data;
+
+        else
+
+            return ['value'=>'No Result Found','id'=>''];
 
     }
+
 }
