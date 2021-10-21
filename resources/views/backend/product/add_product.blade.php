@@ -264,12 +264,6 @@
 		$('#product_purchase_price').number( true, 2);
 		$('#product_selling_price').number( true, 2);
 
-
-		
-
-		// $("#editarPrecioVenta").val(editarPorcentaje);
-		// $("#editarPrecioVenta").prop("readonly",true);
-
 	});
 
 	$("#product_purchase_price").change(function(){

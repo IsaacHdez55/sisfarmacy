@@ -164,15 +164,4 @@ class ProductController extends Controller
 
     }
 
-    public function barcode(){
-
-        // $data['allData'] = Product::all();
-
-        // dd($data);
-        
-        // $barcode = new DNS1D();
-        // $barcode->getBarcodeHTML('9780691147727', 'EAN13');
-
-    }
-
 }

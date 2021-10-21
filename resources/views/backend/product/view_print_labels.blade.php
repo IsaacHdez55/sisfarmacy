@@ -63,7 +63,8 @@
 							<div class="col-md-8">
 
 								<div class="table-responsive">
-
+<form action="{{ route('PrintLabelsPdf') }}" method="post" target="_blank">
+	@csrf
 									<table id="PrintLabels" class="table table-striped custom-table  mb-0">
 
 										<thead>
@@ -88,9 +89,9 @@
 					</div>
 
 					<div class="card-footer">
-						<a href="#" id="print" class="btn btn-primary"><i class="fa fa-print"></i> Print</a>
+						<input type="submit" class="btn btn-primary" value="Print">
 					</div>
-
+</form>
 				</div>
 			</div>
 		</div>
@@ -139,8 +140,10 @@
 	        select: function( event, ui ) {
 
 	        	var name = ui.item.label;
+	        	var id = ui.item.id;
+
 	        	
-	        	$("#PrintLabels>tbody").append("<tr><td id='cantity'  style='width:70%'>" + name +"</td><td><input id='' class='form-control' name='cantity[]' type='number' value='1'></td></tr>");
+	        	$("#PrintLabels>tbody").append("<tr><td style='width:70%'><input name='product_id[]' type='hidden' value="+id+">" + name +"</td><td><input class='form-control cantity' name='cantity[]' type='number' value='1'></td></tr>");
 
 	        	$(this).val(''); return false;
 
@@ -149,13 +152,6 @@
 
 	       
 	    });
-
-	});
-
-	$('#print').on('click', function() {
-
-		var print = $('#cantity').val();
-		console.log("print", print);
 
 	});
 

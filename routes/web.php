@@ -11,6 +11,8 @@ use App\Http\Controllers\backend\BrandController;
 use App\Http\Controllers\backend\UnitController;
 use App\Http\Controllers\backend\ProductController;
 use App\Http\Controllers\backend\PrintLabelsController;
+use App\Http\Controllers\backend\PurchasesController;
+use App\Http\Controllers\backend\PurchasesDetailsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -129,5 +131,17 @@ Route::prefix('products')->group(function (){
 
     Route::get('/printLabls/view', [PrintLabelsController::class, 'PrintLabelsView'])->name('printLabels.view');
     Route::get('/printLabls/search', [PrintLabelsController::class, 'PrintLabelsSearch'])->name('search');
+    Route::post('/printLabls/pdf', [PrintLabelsController::class, 'PrintLabelsPdf'])->name('PrintLabelsPdf');
+
+    // Product Management Route
+
+    Route::get('/purchases/view', [PurchasesController::class, 'PurchasesView'])->name('purchases.view');
+    Route::get('/purchases/add', [PurchasesController::class, 'PurchaseAdd'])->name('purchase.add');
+    Route::post('/product/store', [ProductController::class, 'ProductStore'])->name('product.store');
+    Route::get('/product/edit/{id}', [ProductController::class, 'ProductEdit'])->name('product.edit');
+    Route::post('/product/update/{id}', [ProductController::class, 'ProductUpdate'])->name('product.update');
+    Route::get('/product/delete/{id}', [ProductController::class, 'ProductDelete'])->name('product.delete');
+    Route::get('/product/details/{id}', [ProductController::class, 'ProductDetails'])->name('product.details');
+    Route::get('/product/pdf', [ProductController::class, 'pdf'])->name('product.pdf');
 
 });
