@@ -7,5 +7,14 @@ use Illuminate\Database\Eloquent\Model;
 
 class Purchases extends Model
 {
-    use HasFactory;
+
+    protected $fillable = [
+        'purchases_status',
+    ];
+
+    public function suppliers(){
+
+        return $this->belongsTo(Supplier::class,'purchases_supplier_id','id');
+
+    }
 }

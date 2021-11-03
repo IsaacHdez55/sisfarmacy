@@ -3,6 +3,13 @@
 <head>
 <meta charset="UTF-8">
 
+@php
+
+$invoice = DB::table('invoices')->first();
+$location = DB::table('locations')->first();
+
+@endphp
+
 <title>SISFARMACY | PRODUCT PDF</title>
 
 <style type="text/css">
@@ -76,7 +83,7 @@
       	@foreach ($allData as $key => $product)
         <tr>
       		<th scope="row">{{ $key+1 }}</th>
-	        <td align="center">ST-{{ $product->product_code }}</td>
+	        <td align="center">{{ $invoice->prefix }}-{{ $product->product_code }}</td>
 	        <td align="center">{{ $product->product_name }}</td>
 	        <td align="center">{{ $product->category->category_name}}</td>
 	        <td align="center">{{ $product->brand->brand_name }}</td>
@@ -86,8 +93,8 @@
 	        <td align="center">{{ $product->product_rack }}</td>
 	        <td align="center">{{ $product->product_row }}</td>
 	        <td align="center">{{ $product->product_position }}</td>
-	        <td align="center">{{ $product->product_purchase_price }}</td>
-	        <td align="center">{{ $product->product_selling_price }}</td>
+	        <td align="center">{{ $location->currency_symbol }}{{ $product->product_purchase_price }}</td>
+	        <td align="center">{{ $location->currency_symbol }}{{ $product->product_selling_price }}</td>
 	        <td align="center">{{ $product->product_expiration }}</td>
         </tr>
       	@endforeach        

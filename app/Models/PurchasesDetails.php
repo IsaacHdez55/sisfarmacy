@@ -7,5 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class PurchasesDetails extends Model
 {
-    use HasFactory;
+    public function purchases(){
+        return $this->belongsTo(Purchases::class,'purchases_id', 'id');
+    }
+
+    public function product(){
+        return $this->belongsTo(Product::class,'product_id', 'id');
+    }
 }

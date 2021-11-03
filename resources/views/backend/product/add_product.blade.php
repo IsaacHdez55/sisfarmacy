@@ -4,6 +4,13 @@
 
 @section('admin')
 
+@php
+
+$invoice = DB::table('invoices')->first();
+$location = DB::table('locations')->first();
+
+@endphp
+
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
 <!-- Page Wrapper -->
@@ -42,12 +49,14 @@
 	<label class="">Product Code<span class="text-danger">*</span></label>
 	<div class="input-group">
 		<div class="input-group-prepend">
-			<span class="input-group-text">SF - </span>
+			<span class="input-group-text">{{ $invoice->prefix }} - </span>
 		</div>
-		<input type="text" name="product_code" class="form-control" value="{{ old('product_code') }}" placeholder="Product Code" required>
+		<input type="text" name="product_code" class="form-control @error('product_code') is-invalid @enderror" value="{{ old('product_code') }}" placeholder="Product Code" required>
 		@error('product_code')
 
-			<span class="text-danger">{{ $message }}</span>
+			<span class="invalid-feedback">
+				<strong>{{ $message }}</strong>
+			</span>
 
 		@enderror
 	</div>
@@ -58,10 +67,12 @@
 
 <div class="form-group">
 	<label class="">Product Name<span class="text-danger">*</span></label>
-	<input type="text" name="product_name" class="form-control" value="{{ old('product_name') }}" placeholder="Product Name" required>
+	<input type="text" name="product_name" class="form-control @error('product_name') is-invalid @enderror" value="{{ old('product_name') }}" placeholder="Product Name" required>
 	@error('product_name')
 
-		<span class="text-danger">{{ $message }}</span>
+		<span class="invalid-feedback">
+			<strong>{{ $message }}</strong>
+		</span>
 	
 	@enderror
 </div>
@@ -139,7 +150,7 @@
 	<label class="">Product Purchase Price<span class="text-danger">*</span></label>
 	<div class="input-group">
 		<div class="input-group-prepend">
-			<span class="input-group-text" id="basic-addon2">$</span>
+			<span class="input-group-text" id="basic-addon2">{{ $location->currency_symbol }}</span>
 		</div>
 		<input type="text" name="product_purchase_price" id="product_purchase_price" class="form-control" value="{{ old('product_purchase_price') }}" placeholder="Product Purchase Price" required>
 	</div>
@@ -152,7 +163,7 @@
 	<label class="">Product Selling Price<span class="text-danger">*</span></label>
 	<div class="input-group">
 		<div class="input-group-prepend">
-			<span class="input-group-text" id="basic-addon2">$</span>
+			<span class="input-group-text" id="basic-addon2">{{ $location->currency_symbol }}</span>
 		</div>
 		<input type="text" name="product_selling_price" id="product_selling_price" class="form-control" value="{{ old('product_selling_price') }}" placeholder="Product Selling Price" readonly required>
 	</div>

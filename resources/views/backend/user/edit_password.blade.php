@@ -39,42 +39,48 @@
 								<div class="col-12">
 
 											
-									<div class="form-group">
-										<label class="">Current Password <span class="text-danger">*</span></label>
-										<input type="password" id="current_password" name="oldpassword" class="form-control">
+<div class="form-group">
+	<label class="">Current Password <span class="text-danger">*</span></label>
+	<input type="password" id="current_password" name="oldpassword" class="form-control @error('oldpassword') is-invalid @enderror" value="{{ old('oldpassword') }}">
 
-										@error('oldpassword')
+	@error('oldpassword')
 
-											<span class="text-danger">{{ $message }}</span>
+		<span class="invalid-feedback">
+			<strong>{{ $message }}</strong>
+		</span>
 
-										@enderror
+	@enderror
 
-									</div>
+</div>
 
 									
-									<div class="form-group">
-										<label class="">New Password <span class="text-danger">*</span></label>
-										<input type="password" id="password" name="password" class="form-control">
+<div class="form-group">
+	<label class="">New Password <span class="text-danger">*</span></label>
+	<input type="password" id="password" name="password" class="form-control @error('password') is-invalid @enderror" value="{{ old('password') }}">
 
-										@error('password')
+	@error('password')
 
-											<span class="text-danger">{{ $message }}</span>
+		<span class="invalid-feedback">
+			<strong>{{ $message }}</strong>
+		</span>
 
-										@enderror
+	@enderror
 
-									</div>
+</div>
 
-									<div class="form-group">
-										<label class="">Confirm Password <span class="text-danger">*</span></label>
-										<input type="password" id="password_confirmation" name="password_confirmation" class="form-control">
+<div class="form-group">
+	<label class="">Confirm Password <span class="text-danger">*</span></label>
+	<input type="password" id="password_confirmation" name="password_confirmation" class="form-control @error('password_confirmation') is-invalid @enderror">
 
-										@error('password_confirmation')
+	@error('password_confirmation')
 
-											<span class="text-danger">{{ $message }}</span>
+		<span class="invalid-feedback">
+			<strong>{{ $message }}</strong>
+		</span>
 
-										@enderror
+	@enderror
 
-									</div>
+</div>
 
 
 									<div>

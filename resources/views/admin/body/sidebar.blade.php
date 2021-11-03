@@ -18,9 +18,6 @@ $route = Route::current()->getName();
 				<li class="{{ ($route == 'dashboard')?'active':'' }}">
 					<a href="{{ route('dashboard') }}"><i class="la la-dashboard"></i> <span>Dashboard</span></a>
 				</li>
-				<li class="menu-title"> 
-					<span class="">Users</span>
-				</li>
 				<li class="{{ ($prefix == '/users')?'active':'' }}"> 
 					<a href="{{ route('user.view') }}"><i class="la la-users"></i> <span>Manage User</span></a>
 				</li>
@@ -49,6 +46,9 @@ $route = Route::current()->getName();
 		              <li><a class="{{ ($route == 'purchases.view')?'active':'' }}" href="{{ route('purchases.view') }}"> Purchases</a>
 		            </ul>
 		        </li>
+		        <li> 
+					<a href="{{ route('company.view') }}"><i class="la la-cog"></i> <span>Settings</span></a>
+				</li>
 
 			</ul>
 		</div>

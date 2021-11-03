@@ -39,10 +39,12 @@
 <div class="form-group">
 	<label class="">Brand Name<span class="text-danger">*</span></label>
 	<div class="">
-		<input type="text" name="brand_name" class="form-control" value="{{ old('brand_name') }}" placeholder="Brand Name" required>
+		<input type="text" name="brand_name" class="form-control @error('brand_name') is-invalid @enderror" value="{{ old('brand_name') }}" placeholder="Brand Name" required>
 		@error('brand_name')
 
-			<span class="text-danger">{{ $message }}</span>
+			<span class="invalid-feedback">
+				<strong>{{ $message }}</strong>
+			</span>
 
 		@enderror
 

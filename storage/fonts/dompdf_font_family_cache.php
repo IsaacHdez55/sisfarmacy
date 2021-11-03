@@ -83,4 +83,13 @@
   'material icons' => array(
     'normal' => $fontDir . '/material_icons_normal_9fd6947d540cf7c7311c4e17e9d268aa',
   ),
+  'line awesome brands' => array(
+    'normal' => $fontDir . '/line_awesome_brands_normal_236e025d7a394ca2f16596dcc67e2b5e',
+  ),
+  'line awesome free' => array(
+    'normal' => $fontDir . '/line_awesome_free_normal_49271b580311facb8f7a77b02529bf93',
+  ),
+  'lato' => array(
+    '300' => $fontDir . '/lato_300_dc52991881b98bbc9b3c8b8ab171576e',
+  ),
 ) ?>

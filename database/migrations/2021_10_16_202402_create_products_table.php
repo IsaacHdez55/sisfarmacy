@@ -16,20 +16,20 @@ class CreateProductsTable extends Migration
         Schema::create('products', function (Blueprint $table) {
             $table->id();
 
-            $table->string('product_name')->unique()->nulleable();
-            $table->integer('product_brand')->nulleable();
-            $table->integer('product_unit')->nulleable();
-            $table->integer('product_category')->nulleable();
-            $table->string('product_code')->unique()->nulleable();
-            $table->integer('product_stock')->nulleable();
-            $table->double('product_purchase_price')->nulleable();
-            $table->double('product_selling_price')->nulleable();
-            $table->integer('product_sales')->nulleable();
-            $table->string('product_image')->nulleable();
-            $table->date('product_expiration')->nulleable();
-            $table->string('product_rack')->nulleable();
-            $table->string('product_row')->nulleable();
-            $table->string('product_position')->nulleable();
+            $table->string('product_name')->unique()->nullable();
+            $table->integer('product_brand')->nullable();
+            $table->integer('product_unit')->nullable();
+            $table->integer('product_category')->nullable();
+            $table->string('product_code')->unique()->nullable();
+            $table->integer('product_stock')->nullable();
+            $table->text('product_purchase_price')->nullable();
+            $table->text('product_selling_price')->nullable();
+            $table->integer('product_sales')->nullable();
+            $table->string('product_image')->nullable();
+            $table->date('product_expiration')->nullable();
+            $table->string('product_rack')->nullable();
+            $table->string('product_row')->nullable();
+            $table->string('product_position')->nullable();
 
             $table->timestamps();
         });

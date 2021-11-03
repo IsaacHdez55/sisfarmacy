@@ -1,3 +1,14 @@
+@php
+
+$prefix = Request::route()->getPrefix();
+$route = Route::current()->getName();
+
+$theme = DB::table('themes')->first();
+
+// dd($theme->favicon);
+
+@endphp
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -10,7 +21,7 @@
         <title>@yield('title') | SISFARMACY</title>
 		
 		<!-- Favicon -->
-        <link rel="shortcut icon" type="image/x-icon" href="{{ asset('backend/img/favicon.png') }}">
+        <link rel="shortcut icon" type="image/x-icon" href="{{ url('upload/settings_image/'.$theme->favicon) }}">
 		
 		<!-- Bootstrap CSS -->
         <link rel="stylesheet" href="{{ asset('backend/css/bootstrap.min.css') }}">
@@ -51,9 +62,19 @@
   
   			@include('admin.body.header')
 
+  			@if ($prefix == '/settings')
+
+  			<!-- Sidebar Settings -->
+  
+  			@include('admin.body.sidebarSettings')
+  				
+  			@else
+
   			<!-- Sidebar -->
   
   			@include('admin.body.sidebar')
+  				
+  			@endif
 
   			<!-- Content Wrapper -->
   
@@ -171,7 +192,7 @@
 
 		<!-- Datetimepicker JS -->
 		<script src="{{ asset('backend/js/moment.min.js') }}"></script>
-		<script src="{{ asset('backend/js/bootstrap-datetimepicker.min.js') }}"></script>
+		<script src="{{ asset('backend/js/bootstrap-datetimepicker.min.js') }}"></script>		
 
 		@yield('js')
 		

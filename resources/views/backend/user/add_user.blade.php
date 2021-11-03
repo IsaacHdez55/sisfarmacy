@@ -51,7 +51,14 @@
 <div class="form-group">
 	<label class="">User Name<span class="text-danger">*</span></label>
 	<div class="">
-		<input type="text" name="name" class="form-control" required>
+		<input type="text" name="name" class="form-control @error('name') is-invalid @enderror" value="{{ old('name') }}">
+		@error('name')
+
+			<span class="invalid-feedback">
+				<strong>{{ $message }}</strong>
+			</span>
+
+		@enderror
 	</div>
 </div>
 
@@ -65,10 +72,12 @@
 									
 <div class="form-group">
 	<label class="">User Email <span class="text-danger">*</span></label>
-	<input type="email" name="email" class="form-control" required>
+	<input type="email" name="email" class="form-control @error('email') is-invalid @enderror" value="{{ old('email') }}" required>
 	@error('email')
 
-		<span class="text-danger">{{ $message }}</span>
+		<span class="invalid-feedback">
+			<strong>{{ $message }}</strong>
+		</span>
 
 	@enderror
 </div>

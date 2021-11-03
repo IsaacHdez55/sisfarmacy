@@ -6,6 +6,13 @@
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
+@php
+
+$invoice = DB::table('invoices')->first();
+$location = DB::table('locations')->first();
+
+@endphp
+
 <!-- Page Wrapper -->
 <div class="page-wrapper">
 
@@ -42,7 +49,7 @@
 	<label class="">Product Code<span class="text-danger">*</span></label>
 	<div class="input-group">
 		<div class="input-group-prepend">
-			<span class="input-group-text">SF - </span>
+			<span class="input-group-text">{{ $invoice->prefix }} - </span>
 		</div>
 		<input type="text" name="product_code" class="form-control" value="{{ $editData->product_code }}" placeholder="Product Code" required>
 	</div>
@@ -128,7 +135,7 @@
 	<label class="">Product Purchase Price<span class="text-danger">*</span></label>
 	<div class="input-group">
 		<div class="input-group-prepend">
-			<span class="input-group-text" id="basic-addon2">$</span>
+			<span class="input-group-text" id="basic-addon2">{{ $location->currency_symbol }}</span>
 		</div>
 		<input type="text" name="product_purchase_price" id="product_purchase_price" class="form-control" value="{{ $editData->product_purchase_price }}" placeholder="Product Purchase Price" required>
 	</div>
@@ -141,7 +148,7 @@
 	<label class="">Product Selling Price<span class="text-danger">*</span></label>
 	<div class="input-group">
 		<div class="input-group-prepend">
-			<span class="input-group-text" id="basic-addon2">$</span>
+			<span class="input-group-text" id="basic-addon2">{{ $location->currency_symbol }}</span>
 		</div>
 		<input type="text" name="product_selling_price" id="product_selling_price" class="form-control" value="{{ $editData->product_selling_price }}" placeholder="Product Selling Price" readonly required>
 	</div>

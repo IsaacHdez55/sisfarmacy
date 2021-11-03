@@ -39,10 +39,12 @@
 <div class="form-group">
 	<label class="">Name Company<span class="text-danger">*</span></label>
 	<div class="">
-		<input type="text" name="supplier_name_company" class="form-control" value="{{ old('supplier_name_company') }}" placeholder="Name Company" required>
+		<input type="text" name="supplier_name_company" class="form-control @error('supplier_name_company') is-invalid @enderror" value="{{ old('supplier_name_company') }}" placeholder="Name Company" required>
 		@error('supplier_name_company')
 
-			<span class="text-danger">{{ $message }}</span>
+			<span class="invalid-feedback">
+				<strong>{{ $message }}</strong>
+			</span>
 
 		@enderror
 	</div>
@@ -54,10 +56,12 @@
 <div class="form-group">
 	<label class="">Supplier's Identification<span class="text-danger">*</span></label>
 	<div class="">
-		<input type="text" name="supplier_identification" class="form-control" value="{{ old('supplier_identification') }}" placeholder="Supplier's Identification" required>
+		<input type="text" name="supplier_identification" class="form-control @error('supplier_identification') is-invalid @enderror" value="{{ old('supplier_identification') }}" placeholder="Supplier's Identification" required>
 		@error('supplier_identification')
 
-			<span class="text-danger">{{ $message }}</span>
+			<span class="invalid-feedback">
+				<strong>{{ $message }}</strong>
+			</span>
 
 		@enderror
 	</div>
@@ -74,7 +78,14 @@
 <div class="form-group">
 	<label class="">Supplier's Name<span class="text-danger">*</span></label>
 	<div class="">
-		<input type="text" name="supplier_name" class="form-control" value="{{ old('supplier_name') }}" placeholder="Supplier's Name" required>
+		<input type="text" name="supplier_name" class="form-control @error('supplier_name') is-invalid @enderror" value="{{ old('supplier_name') }}" placeholder="Supplier's Name" required>
+		@error('supplier_name')
+
+			<span class="invalid-feedback">
+				<strong>{{ $message }}</strong>
+			</span>
+
+		@enderror
 	</div>
 </div>
 
@@ -85,7 +96,14 @@
 
 <div class="form-group">
 	<label class="">Supplier's Phone <span class="text-danger">*</span></label>
-	<input type="text" name="supplier_phone" id="phone" class="form-control" value="{{ old('supplier_phone') }}" placeholder="Supplier's Phone" required>
+	<input type="text" name="supplier_phone" id="phone" class="form-control @error('supplier_phone') is-invalid @enderror" value="{{ old('supplier_phone') }}" placeholder="Supplier's Phone" required>
+	@error('supplier_phone')
+
+		<span class="invalid-feedback">
+			<strong>{{ $message }}</strong>
+		</span>
+
+	@enderror		
 </div>									
 
 								</div>{{-- End col-md-6 --}}

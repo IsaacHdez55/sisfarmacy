@@ -4,6 +4,12 @@
 
 @section('admin')
 
+@php
+
+$invoice = DB::table('invoices')->first();
+
+@endphp
+
 <!-- Page Wrapper -->
 <div class="page-wrapper">
 
@@ -61,7 +67,7 @@
 										<img alt="{{ $product->name }}" src="{{ (!empty($product->product_image))? url('upload/product_image/'.$product->product_image):url('upload/product.jpg') }}" style="width: 80px;">
 
 									</td>
-									<td>ST-{{ $product->product_code }}</td>
+									<td>{{ $invoice->prefix }}-{{ $product->product_code }}</td>
 									<td>{{ $product->product_name }}</td>
 									<td>{{ $product->category->category_name }}</td>
 									<td>{{ $product->product_stock }}</td>

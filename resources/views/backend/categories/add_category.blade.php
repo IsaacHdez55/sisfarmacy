@@ -39,10 +39,12 @@
 <div class="form-group">
 	<label class="">Category Code<span class="text-danger">*</span></label>
 	<div class="">
-		<input type="text" name="category_code" class="form-control" value="{{ old('category_code') }}" placeholder="Code Category" required>
+		<input type="text" name="category_code" class="form-control @error('category_code') is-invalid @enderror" value="{{ old('category_code') }}" placeholder="Code Category" required>
 		@error('category_code')
 
-			<span class="text-danger">{{ $message }}</span>
+			<span class="invalid-feedback">
+				<strong>{{ $message }}</strong>
+			</span>
 
 		@enderror
 	</div>
@@ -54,10 +56,12 @@
 <div class="form-group">
 	<label class="">Category Name<span class="text-danger">*</span></label>
 	<div class="">
-		<input type="text" name="category_name" class="form-control" value="{{ old('category_name') }}" placeholder="Category Name" required>
+		<input type="text" name="category_name" class="form-control @error('category_name') is-invalid @enderror" value="{{ old('category_name') }}" placeholder="Category Name" required>
 		@error('category_name')
 
-			<span class="text-danger">{{ $message }}</span>
+			<span class="invalid-feedback">
+				<strong>{{ $message }}</strong>
+			</span>
 
 		@enderror
 	</div>

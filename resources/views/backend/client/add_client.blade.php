@@ -39,10 +39,12 @@
 <div class="form-group">
 	<label class="">Client Identification<span class="text-danger">*</span></label>
 	<div class="">
-		<input type="text" name="client_identification" class="form-control" value="{{ old('client_identification') }}" placeholder="Client Identification" required>
+		<input type="text" name="client_identification" class="form-control @error('client_identification') is-invalid @enderror" value="{{ old('client_identification') }}" placeholder="Client Identification" required>
 		@error('client_identification')
 
-			<span class="text-danger">{{ $message }}</span>
+			<span class="invalid-feedback">
+				<strong>{{ $message }}</strong>
+			</span>
 
 		@enderror
 	</div>
@@ -54,7 +56,14 @@
 <div class="form-group">
 	<label class="">Client Name<span class="text-danger">*</span></label>
 	<div class="">
-		<input type="text" name="client_name" class="form-control" value="{{ old('client_name') }}" placeholder="Client Name" required>
+		<input type="text" name="client_name" class="form-control @error('client_name') is-invalid @enderror" value="{{ old('client_name') }}" placeholder="Client Name" required>
+		@error('client_name')
+
+			<span class="invalid-feedback">
+				<strong>{{ $message }}</strong>
+			</span>
+
+		@enderror
 	</div>
 </div>
 

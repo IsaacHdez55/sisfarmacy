@@ -39,10 +39,12 @@
 <div class="form-group">
 	<label class="">Name Unit<span class="text-danger">*</span></label>
 	<div class="">
-		<input type="text" name="units_name" class="form-control" value="{{ old('units_name') }}" placeholder="Name Unit" required>
+		<input type="text" name="units_name" class="form-control @error('units_name') is-invalid @enderror" value="{{ old('units_name') }}" placeholder="Name Unit" required>
 		@error('units_name')
 
-			<span class="text-danger">{{ $message }}</span>
+			<span class="invalid-feedback">
+				<strong>{{ $message }}</strong>
+			</span>
 
 		@enderror
 

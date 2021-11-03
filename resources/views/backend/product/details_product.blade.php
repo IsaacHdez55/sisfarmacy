@@ -6,7 +6,7 @@
 
 @php
 
-// dd($data->brasd->brand_name);
+$invoice = DB::table('invoices')->first();
 
 @endphp
 
@@ -66,8 +66,8 @@
 							</div>
 							<div class="col-sm-6 m-b-20">
 								<div class="invoice-details">
-									<div>{!! DNS1D::getBarcodeHTML($detailsData->product_code, 'EAN13') !!}</div></br>
-									<h3 class="text-uppercase">Code {{ $detailsData->product_code }}</h3>
+									{{-- <div>{!! DNS1D::getBarcodeHTML($detailsData->product_code, 'EAN13') !!}</div></br> --}}
+									<h3 class="text-uppercase">Code {{ $invoice->prefix }}-{{ $detailsData->product_code }}</h3>
 									<ul class="list-unstyled">
 										<li>Create Date: <span>{{ $detailsData->created_at }}</span></li>
 										<li>Expiry date: <span>{{ $detailsData->product_expiration }}</span></li>

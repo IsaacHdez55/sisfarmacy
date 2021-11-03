@@ -1,10 +1,17 @@
+@php
+
+$theme = DB::table('themes')->first();
+
+@endphp
+
+
 <!-- Header -->
 <div class="header">
 
 	<!-- Logo -->
     <div class="header-left">
         <a href="{{ route('dashboard') }}" class="logo">
-			<img src="{{ asset('backend/img/logo.png') }}" width="40" height="40" alt="">
+			<img src="{{ url('upload/settings_image/'.$theme->light_logo) }}" width="40" height="40" alt="">
 		</a>
     </div>
 	<!-- /Logo -->
@@ -19,7 +26,7 @@
 	
 	<!-- Header Title -->
     <div class="page-title-box">
-		<h3>SISFARMACY</h3>
+		<h3>SISFARMACY - {{ $theme->website_name }}</h3>
     </div>
 	<!-- /Header Title -->
 	

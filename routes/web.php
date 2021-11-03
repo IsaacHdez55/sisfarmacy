@@ -14,6 +14,12 @@ use App\Http\Controllers\backend\PrintLabelsController;
 use App\Http\Controllers\backend\PurchasesController;
 use App\Http\Controllers\backend\PurchasesDetailsController;
 
+//Settings
+use App\Http\Controllers\backend\CompanyController;
+use App\Http\Controllers\backend\LocationController;
+use App\Http\Controllers\backend\ThemeController;
+use App\Http\Controllers\backend\InvoiceController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -57,6 +63,36 @@ Route::prefix('profiles')->group(function (){
     Route::post('/store', [ProfileController::class, 'ProfileStore'])->name('profile.store');
     Route::get('/password/view', [ProfileController::class, 'PasswordView'])->name('password.view');
     Route::post('/password/update', [ProfileController::class, 'PasswordUpdate'])->name('password.update');
+
+});
+
+// Settings
+
+Route::prefix('settings')->group(function (){
+
+    // Company Management Route
+
+    Route::get('/company/view', [CompanyController::class, 'CompanyView'])->name('company.view');
+    Route::post('/company/store', [CompanyController::class, 'CompanyStore'])->name('company.store');
+    Route::post('/company/update/{id}', [CompanyController::class, 'CompanyUpdate'])->name('company.update');
+
+    // Location Management Route
+
+    Route::get('/location/view', [LocationController::class, 'LocationView'])->name('location.view');
+    Route::post('/location/store', [LocationController::class, 'LocationStore'])->name('location.store');
+    Route::post('/location/update/{id}', [LocationController::class, 'LocationUpdate'])->name('location.update');
+
+    // Theme Management Route
+
+    Route::get('/theme/view', [ThemeController::class, 'ThemeView'])->name('theme.view');
+    Route::post('/theme/store', [ThemeController::class, 'ThemeStore'])->name('theme.store');
+    Route::post('/theme/update/{id}', [ThemeController::class, 'ThemeUpdate'])->name('theme.update');
+
+    // Invoice Management Route
+
+    Route::get('/invoice/view', [InvoiceController::class, 'InvoiceView'])->name('invoice.view');
+    Route::post('/invoice/store', [InvoiceController::class, 'InvoiceStore'])->name('invoice.store');
+    Route::post('/invoice/update/{id}', [InvoiceController::class, 'InvoiceUpdate'])->name('invoice.update');
 
 });
 
@@ -137,11 +173,9 @@ Route::prefix('products')->group(function (){
 
     Route::get('/purchases/view', [PurchasesController::class, 'PurchasesView'])->name('purchases.view');
     Route::get('/purchases/add', [PurchasesController::class, 'PurchaseAdd'])->name('purchase.add');
-    Route::post('/product/store', [ProductController::class, 'ProductStore'])->name('product.store');
-    Route::get('/product/edit/{id}', [ProductController::class, 'ProductEdit'])->name('product.edit');
-    Route::post('/product/update/{id}', [ProductController::class, 'ProductUpdate'])->name('product.update');
-    Route::get('/product/delete/{id}', [ProductController::class, 'ProductDelete'])->name('product.delete');
-    Route::get('/product/details/{id}', [ProductController::class, 'ProductDetails'])->name('product.details');
-    Route::get('/product/pdf', [ProductController::class, 'pdf'])->name('product.pdf');
+    Route::post('/purchases/store', [PurchasesController::class, 'PurchaseStore'])->name('purchase.store');
+    Route::get('/purchases/change_status/{purchase}', [PurchasesController::class, 'change_status'])->name('purchase.change_status');
+    Route::get('/purchases/details/{id}', [PurchasesController::class, 'PurchaseDetails'])->name('purchase.details');
+    Route::get('/purchases/pdf/{id}', [PurchasesController::class, 'pdf'])->name('purchase.pdf');
 
 });

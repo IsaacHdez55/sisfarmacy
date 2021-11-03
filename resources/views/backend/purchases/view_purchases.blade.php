@@ -47,33 +47,41 @@
 						</thead>
 						<tbody>
 
-							{{-- @foreach ($allData as $key => $product)
+							@foreach ($allData as $key => $purchase)
 
 								<tr>
 									<td>{{ $key + 1 }}</td>
+									<td>{{ $purchase->purchases_date_purchase }}</td>
+									<td>{{ $purchase->purchases_reference_number }}</td>
+									<td>{{ $purchase->suppliers->supplier_name}}</td>
 									<td>
+																
+										@if ($purchase->purchases_status == "pending")
 
-										<img alt="{{ $product->name }}" src="{{ (!empty($product->product_image))? url('upload/product_image/'.$product->product_image):url('upload/product.jpg') }}" style="width: 80px;">
+											<a href="{{route('purchase.change_status', $purchase)}}" class="btn btn-warning">Pending</a>
+											
+										@elseif ($purchase->purchases_status == "requested")
+
+											<a href="{{route('purchase.change_status', $purchase)}}" class="btn btn-info">Requested</a>
+
+										@elseif ($purchase->purchases_status == "received")
+
+											<a class="btn btn-success">Received</a>
+											
+										@endif
 
 									</td>
-									<td>ST-{{ $product->product_code }}</td>
-									<td>{{ $product->product_name }}</td>
-									<td>{{ $product->category->category_name }}</td>
-									<td>{{ $product->product_stock }}</td>
-									<td>{{ $product->product_sales }}</td>
-									<td>{{ $product->product_expiration }}</td>
+									<td>{{ number_format($purchase->purchases_grand_total) }}</td>
 									<td>
 										
-										<a href="{{ route('product.details', $product->id) }}" class="btn btn-success"><i class="fa fa-eye"></i></a>
+										<a href="{{ route('purchase.details', $purchase->id) }}" class="btn btn-success"><i class="fa fa-eye"></i></a>
 
-										<a href="{{ route('product.edit', $product->id) }}" class="btn btn-info"><i class="fa fa-edit"></i></a>
-
-										<a href="{{ route('product.delete', $product->id) }}" class="btn btn-danger" id="delete"><i class="fa fa-trash"></i></a>
+										<a href="{{ route('purchase.pdf', $purchase->id) }}" class="btn btn-danger"><i class="fa fa-file"></i></a>
 
 									</td>
 								</tr>
 
-							@endforeach --}}
+							@endforeach
 
 						</tbody>
 					</table>
@@ -90,3 +98,4 @@
 <!-- /Page Wrapper -->
 
 @endsection
+
