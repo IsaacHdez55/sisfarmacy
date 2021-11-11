@@ -4,11 +4,15 @@ namespace App\Http\Controllers\backend;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 use App\Models\User;
+use Spatie\Permission\Models\Role;
 
 class UserController extends Controller
 {
     public function UserView(){
+
+        abort_if(Gate::denies('users.view'), 403);
 
         // $allData = User::all();
 
@@ -22,7 +26,11 @@ class UserController extends Controller
 
     public function UserAdd(){
 
-        return view('backend.user.add_user');
+        abort_if(Gate::denies('users.add'), 403);
+
+        $data['roles'] = Role::all();
+
+        return view('backend.user.add_user', $data);
 
     }
 
@@ -37,12 +45,14 @@ class UserController extends Controller
 
         $data = new User();
 
-        $data->usertype = $request->usertype;
         $data->name = $request->name;
         $data->email = $request->email;
         $data->password = bcrypt($request->password);
 
-        $data->save();
+        $roles = $request->role;
+        $data->syncRoles($roles);
+
+        $data->save();    
 
         $notification = array(
 
@@ -57,8 +67,11 @@ class UserController extends Controller
 
     public function UserEdit($id){
 
+        abort_if(Gate::denies('users.edit'), 403);        
+
         $editData = User::find($id);
-        return view('backend.user.edit_user',compact('editData'));
+        $roles = Role::all();
+        return view('backend.user.edit_user',compact('editData', 'roles'));
 
     }
 
@@ -66,9 +79,11 @@ class UserController extends Controller
 
         $data = User::find($id);
 
-        $data->usertype = $request->usertype;
         $data->name = $request->name;
         $data->email = $request->email;
+
+        $roles = $request->role;
+        $data->syncRoles($roles);
 
         $data->save();
 
@@ -84,18 +99,36 @@ class UserController extends Controller
     }
 
     public function UserDelete($id){
+        
+        abort_if(Gate::denies('users.delete'), 403);
 
         $user = User::find($id);
-        $user->delete();
 
-        $notification = array(
+        if (Auth()->user()->id == $user->id){
 
-            'message' => 'User Deleted Successfully',
-            'alert-type' => 'info',
+            $notification = array(
 
-        );
+                'message' => 'It is not possible to delete your user while you are logged in.',
+                'alert-type' => 'info',
 
-        return redirect()->route('user.view')->with($notification);
+            );
+
+            return redirect()->route('user.view')->with($notification);
+
+        }else{
+
+            $user->delete();
+
+            $notification = array(
+
+                'message' => 'User Deleted Successfully',
+                'alert-type' => 'info',
+
+            );
+
+            return redirect()->route('user.view')->with($notification);
+
+        }
 
     }
 

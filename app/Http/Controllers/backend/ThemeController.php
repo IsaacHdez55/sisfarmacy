@@ -3,12 +3,16 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Http\Request;
 use App\Models\Theme;
 
 class ThemeController extends Controller
 {
     public function ThemeView(){
+
+        abort_if(Gate::denies('theme.view'), 403);
+        
 
         $data['allData'] = Theme::all();
 

@@ -3,12 +3,16 @@
 namespace App\Http\Controllers\backend;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Http\Request;
 use App\Models\Unit;
 
 class UnitController extends Controller
 {
     public function UnitView(){
+
+        abort_if(Gate::denies('units.view'), 403);
+
 
         $data['allData'] = Unit::all();
 
@@ -17,6 +21,9 @@ class UnitController extends Controller
     }
 
     public function UnitAdd(){
+
+        abort_if(Gate::denies('units.add'), 403);
+
 
         return view('backend.unit.add_unit');
 
@@ -50,6 +57,9 @@ class UnitController extends Controller
 
     public function UnitEdit($id){
 
+        abort_if(Gate::denies('units.edit'), 403);
+
+
         $editData = Unit::find($id);
 
         return view('backend.unit.edit_unit',compact('editData'));
@@ -77,6 +87,9 @@ class UnitController extends Controller
     }
 
     public function UnitDelete($id){
+
+        abort_if(Gate::denies('units.delete'), 403);
+
 
         $category = Unit::find($id);
         $category->delete();

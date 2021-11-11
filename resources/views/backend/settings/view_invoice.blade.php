@@ -31,6 +31,17 @@
 						</div>
 					</div>
 					<div class="form-group row">
+						<label class="col-lg-3 col-form-label">Invoice tax</label>
+						<div class="col-lg-9">
+							<div class="input-group">
+								<input type="number" name="tax" value="{{ $allData[0]['tax'] }}" class="form-control" required>
+								<div class="input-group-prepend">
+									<span class="input-group-text"> % </span>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="form-group row">
 						<label class="col-lg-3 col-form-label">Invoice Logo</label>
 						<div class="col-lg-7">
 							<input type="file" name="invoice_logo" id="invoice_logo" class="form-control">

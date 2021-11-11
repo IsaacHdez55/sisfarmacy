@@ -1,6 +1,6 @@
 @extends('admin.admin_master')
 
-@section('title','Manage Unit List')
+@section('title','Manage Expense Category List')
 
 @section('admin')
 
@@ -14,15 +14,15 @@
 		<div class="page-header">
 			<div class="row align-items-center">
 				<div class="col">
-					<h3 class="page-title">Manage Unit List</h3>
+					<h3 class="page-title">Manage Expense Category List</h3>
 					<ul class="breadcrumb">
 						<li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Dashboard</a></li>
-						<li class="breadcrumb-item active">Manage Unit List</li>
+						<li class="breadcrumb-item active">Manage Expense Category List</li>
 					</ul>
 				</div>
-				@can('units.add')
+				@can('brands.add')
 				<div class="col-auto float-right ml-auto">
-					<a href="{{ route('unit.add') }}" class="btn add-btn"><i class="fa fa-plus"></i> Add Unit</a>
+					<a href="{{ route('category.add') }}" class="btn add-btn"><i class="fa fa-plus"></i> Add Expense Category</a>
 				</div>
 				@endcan
 			</div>
@@ -38,28 +38,26 @@
 						<thead>
 							<tr>
 								<th style="width:10px">#</th>
-								<th>Unit</th>
-								<th>Short Name Unit</th>
+								<th>Name</th>
+								<th>Code</th>
 								<th>Action</th>
 							</tr>
 						</thead>
 						<tbody>
 
-							@foreach ($allData as $key => $unit)
+							@foreach ($allData as $key => $expense_category)
 
 								<tr>
 									<td>{{ $key + 1 }}</td>
-									<td>{{ $unit->units_name }}</td>
-									<td>{{ $unit->units_short_name }}</td>
+									<td>{{ $expense_category->name }}</td>
+									<td>{{ $expense_category->code }}</td>
 									<td>
-										
-										@can('units.edit')
-										<a href="{{ route('unit.edit', $unit->id) }}" class="btn btn-info"><i class="fa fa-edit"></i></a>
-										@endcan
-										@can('units.delete')
-										<a href="{{ route('unit.delete', $unit->id) }}" class="btn btn-danger" id="delete"><i class="fa fa-trash"></i></a>
-										@endcan
-
+@can('brands.edit')
+										<a href="{{ route('category.edit', $expense_category->id) }}" class="btn btn-info"><i class="fa fa-edit"></i></a>
+@endcan
+@can('brands.delete')
+										<a href="{{ route('category.delete', $expense_category->id) }}" class="btn btn-danger" id="delete"><i class="fa fa-trash"></i></a>
+@endcan
 									</td>
 								</tr>
 
@@ -78,5 +76,6 @@
 	
 </div>
 <!-- /Page Wrapper -->
+
 
 @endsection

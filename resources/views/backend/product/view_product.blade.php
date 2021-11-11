@@ -27,10 +27,13 @@ $invoice = DB::table('invoices')->first();
 					</ul>
 				</div>
 				<div class="col-auto float-right ml-auto">
+					@can('product.add')
 					<a href="{{ route('product.add') }}" class="btn add-btn"><i class="fa fa-plus"></i> Add Product</a>
-
+					@endcan
+					@can('product.pdf')
 					<a href="{{ route('product.pdf') }}" {{-- target="_blank" --}} class="btn btn-info"><i class="fa fa-file"></i> PDF</a>
 					&nbsp;
+					@endcan
 				</div>
 			</div>
 
@@ -75,11 +78,17 @@ $invoice = DB::table('invoices')->first();
 									<td>{{ $product->product_expiration }}</td>
 									<td>
 										
+										@can('product.details')
 										<a href="{{ route('product.details', $product->id) }}" class="btn btn-success"><i class="fa fa-eye"></i></a>
+										@endcan
 
+										@can('product.edit')
 										<a href="{{ route('product.edit', $product->id) }}" class="btn btn-info"><i class="fa fa-edit"></i></a>
+										@endcan
 
+										@can('product.delete')
 										<a href="{{ route('product.delete', $product->id) }}" class="btn btn-danger" id="delete"><i class="fa fa-trash"></i></a>
+										@endcan
 
 									</td>
 								</tr>

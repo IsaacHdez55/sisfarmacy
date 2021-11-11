@@ -13,12 +13,15 @@ use App\Http\Controllers\backend\ProductController;
 use App\Http\Controllers\backend\PrintLabelsController;
 use App\Http\Controllers\backend\PurchasesController;
 use App\Http\Controllers\backend\PurchasesDetailsController;
+use App\Http\Controllers\backend\ExpenseCategoryController;
 
 //Settings
 use App\Http\Controllers\backend\CompanyController;
 use App\Http\Controllers\backend\LocationController;
 use App\Http\Controllers\backend\ThemeController;
 use App\Http\Controllers\backend\InvoiceController;
+use App\Http\Controllers\backend\RolePermissionController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -41,7 +44,9 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 
 Route::get('/admin/logut', [AdminController::class, 'Logout'])->name('admin.logout');
 
-// Users Management Route
+Route::group(['middleware' => 'auth'], function() {
+
+    // Users Management Route
 
 Route::prefix('users')->group(function (){
 
@@ -94,6 +99,19 @@ Route::prefix('settings')->group(function (){
     Route::post('/invoice/store', [InvoiceController::class, 'InvoiceStore'])->name('invoice.store');
     Route::post('/invoice/update/{id}', [InvoiceController::class, 'InvoiceUpdate'])->name('invoice.update');
 
+    // Roles Management Route
+
+    Route::get('/roles-permissions/view', [RolePermissionController::class, 'RolePermissionView'])->name('roles-permissions.view');
+    Route::post('/roles/store', [RolePermissionController::class, 'RoleStore'])->name('role.store');
+    Route::post('/roles/update/{id}', [RolePermissionController::class, 'RoleUpdate'])->name('role.update');
+    Route::get('/roles/delete/{id}', [RolePermissionController::class, 'RoleDelete'])->name('role.delete');
+
+    // Permissions Management Route
+
+    Route::post('/permissions/store', [RolePermissionController::class, 'PermissionStore'])->name('permission.store');
+    Route::post('/permissions/update/{id}', [RolePermissionController::class, 'PermissionUpdate'])->name('permission.update');
+    Route::get('/permissions/delete/{id}', [RolePermissionController::class, 'PermissionDelete'])->name('permission.delete');
+
 });
 
 // Contact Management Route
@@ -143,7 +161,7 @@ Route::prefix('products')->group(function (){
     Route::post('/brands/update/{id}', [BrandController::class, 'BrandUpdate'])->name('brand.update');
     Route::get('/brands/delete/{id}', [BrandController::class, 'BrandDelete'])->name('brand.delete');
 
-    // Brands Management Route
+    // Units Management Route
 
     Route::get('/units/view', [UnitController::class, 'UnitView'])->name('units.view');
     Route::get('/units/add', [UnitController::class, 'UnitAdd'])->name('unit.add');
@@ -169,7 +187,7 @@ Route::prefix('products')->group(function (){
     Route::get('/printLabls/search', [PrintLabelsController::class, 'PrintLabelsSearch'])->name('search');
     Route::post('/printLabls/pdf', [PrintLabelsController::class, 'PrintLabelsPdf'])->name('PrintLabelsPdf');
 
-    // Product Management Route
+    // Purchase Management Route
 
     Route::get('/purchases/view', [PurchasesController::class, 'PurchasesView'])->name('purchases.view');
     Route::get('/purchases/add', [PurchasesController::class, 'PurchaseAdd'])->name('purchase.add');
@@ -178,4 +196,30 @@ Route::prefix('products')->group(function (){
     Route::get('/purchases/details/{id}', [PurchasesController::class, 'PurchaseDetails'])->name('purchase.details');
     Route::get('/purchases/pdf/{id}', [PurchasesController::class, 'pdf'])->name('purchase.pdf');
 
+});
+
+// Expenses Management Route
+
+Route::prefix('expenses')->group(function (){
+
+    // Expenses Category Management Route
+
+    Route::get('/category/view', [ExpenseCategoryController::class, 'CategoryView'])->name('category.view');
+    Route::get('/category/add', [ExpenseCategoryController::class, 'CategoryAdd'])->name('category.add');
+    Route::post('/category/store', [ExpenseCategoryController::class, 'CategoryStore'])->name('category.store');
+    Route::get('/category/edit/{id}', [ExpenseCategoryController::class, 'CategoryEdit'])->name('category.edit');
+    Route::post('/category/update/{id}', [ExpenseCategoryController::class, 'CategoryUpdate'])->name('category.update');
+    Route::get('/category/delete/{id}', [ExpenseCategoryController::class, 'CategoryDelete'])->name('category.delete');
+
+    // Clients Management Route
+
+    Route::get('/client/view', [ClientController::class, 'ClientView'])->name('client.view');
+    Route::get('/client/add', [ClientController::class, 'ClientAdd'])->name('clients.add');
+    Route::post('/client/store', [ClientController::class, 'ClientStore'])->name('clients.store');
+    Route::get('/client/edit/{id}', [ClientController::class, 'ClientEdit'])->name('clients.edit');
+    Route::post('/client/update/{id}', [ClientController::class, 'ClientUpdate'])->name('clients.update');
+    Route::get('/client/delete/{id}', [ClientController::class, 'ClientDelete'])->name('clients.delete');
+
+});
+    
 });

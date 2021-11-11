@@ -7,6 +7,7 @@
 
 $invoice = DB::table('invoices')->first();
 $location = DB::table('locations')->first();
+$company = DB::table('companies')->first();
 
 @endphp
 
@@ -38,15 +39,14 @@ $location = DB::table('locations')->first();
 
   <table width="100%">
     <tr>
-        <td valign="top"><img src="{{asset('backend/img/logo.png')}}" alt="" width="150"/></td>
+        <td valign="top"><img src="{{ url('upload/settings_image/'.$invoice->invoice_logo) }}" alt="" width="30%"/></td>
         <td align="right">
             <h3>SISFARMACY</h3>
             <pre>
-                Company representative name
-                Company address
-                Tax ID
-                phone
-                fax
+                {{ $company->name }}
+                {{ $company->address }}
+                {{ $company->email }}
+                Phone: {{ $company->phone }}
             </pre>
         </td>
     </tr>

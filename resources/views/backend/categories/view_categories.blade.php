@@ -20,9 +20,11 @@
 						<li class="breadcrumb-item active">Manage Category List</li>
 					</ul>
 				</div>
+				@can('categories.add')
 				<div class="col-auto float-right ml-auto">
 					<a href="{{ route('category.add') }}" class="btn add-btn"><i class="fa fa-plus"></i> Add Category</a>
 				</div>
+				@endcan
 			</div>
 		</div>
 		<!-- /Page Header -->
@@ -51,9 +53,13 @@
 									<td>{{ $category->category_name }}</td>
 									<td>
 										
+										@can('categories.edit')
 										<a href="{{ route('category.edit', $category->id) }}" class="btn btn-info"><i class="fa fa-edit"></i></a>
+										@endcan
 
+										@can('categories.delete')
 										<a href="{{ route('category.delete', $category->id) }}" class="btn btn-danger" id="delete"><i class="fa fa-trash"></i></a>
+										@endcan
 
 									</td>
 								</tr>

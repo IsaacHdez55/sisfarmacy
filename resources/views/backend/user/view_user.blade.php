@@ -23,7 +23,9 @@
 					</ul>
 				</div>
 				<div class="col-auto float-right ml-auto">
-					<a href="{{ route('users.add') }}" class="btn add-btn"><i class="fa fa-plus"></i> Add User</a>
+					@can('users.add')
+						<a href="{{ route('users.add') }}" class="btn add-btn"><i class="fa fa-plus"></i> Add User</a>
+					@endcan
 				</div>
 			</div>
 		</div>
@@ -41,7 +43,7 @@
 								<th>Name</th>
 								<th>Email</th>
 								<th>Image</th>
-								<th>Usertype</th>
+								<th>Rol</th>
 								<th>Last Login</th>
 								<th>Action</th>
 							</tr>
@@ -55,14 +57,22 @@
 									<td>{{ $user->name }}</td>
 									<td>{{ $user->email }}</td>
 									<td><img alt="{{ $user->name }}" src="{{ (!empty($user->image))? url('upload/user_images/'.$user->image):url('upload/user.jpg') }}" style="width: 60px;"></td>
-									<td>{{ $user->usertype }}</td>
+									<td>
+										@foreach ($user->roles as $roles)
+
+											{{ $roles->name }}
+											
+										@endforeach
+									</td>
 									<td>{{ $user->last_login }}</td>
 									<td>
 										
-										<a href="{{ route('users.edit', $user->id) }}" class="btn btn-info"><i class="fa fa-edit"></i></a>
-
-										<a href="{{ route('users.delete', $user->id) }}" class="btn btn-danger" id="delete"><i class="fa fa-trash"></i></a>
-
+										@can('users.edit')
+											<a href="{{ route('users.edit', $user->id) }}" class="btn btn-info"><i class="fa fa-edit"></i></a>
+										@endcan
+										@can('users.delete')
+											<a href="{{ route('users.delete', $user->id) }}" class="btn btn-danger" id="delete"><i class="fa fa-trash"></i></a>
+										@endcan
 									</td>
 								</tr>
 

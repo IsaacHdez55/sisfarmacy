@@ -37,11 +37,14 @@
 								<div class="col-md-6">
 
 <div class="form-group">
-	<label class="">User Type <span class="text-danger">*</span></label>
-	<select class="form-control" name="usertype" id="usertype" required>
-		<option value="" selected disabled>-- Select Type --</option>
-		<option value="Admin">Admin</option>
-		<option value="Seller">Seller</option>
+	<label class="">Rol<span class="text-danger">*</span></label>
+	<select class="form-control" name="role" id="role" required>
+		<option value="" selected disabled>-- Select Rol --</option>
+		@foreach ($roles as $role)
+
+			<option value="{{ $role->id }}">{{ $role->name }}</option>
+			
+		@endforeach
 	</select>
 </div>
 								</div>{{-- End col-md-6 --}}

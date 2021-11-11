@@ -24,9 +24,9 @@ $route = Route::current()->getName();
 					<li class="{{ ($route == 'theme.view')?'active':'' }}"> 
 						<a href="{{ route('theme.view') }}"><i class="la la-photo"></i> <span>Theme Settings</span></a>
 					</li>
-					{{-- <li> 
-						<a href="roles-permissions.html"><i class="la la-key"></i> <span>Roles & Permissions</span></a>
-					</li> --}}
+					<li class="{{ ($route == 'roles-permissions.view')?'active':'' }}">  
+						<a href="{{ route('roles-permissions.view') }}"><i class="la la-key"></i> <span>Roles & Permissions</span></a>
+					</li>
 					{{-- <li> 
 						<a href="email-settings.html"><i class="la la-at"></i> <span>Email Settings</span></a>
 					</li> --}}

@@ -20,9 +20,11 @@
 						<li class="breadcrumb-item active">Manage Supplier List</li>
 					</ul>
 				</div>
+				@can('suppliers.add')
 				<div class="col-auto float-right ml-auto">
 					<a href="{{ route('suppliers.add') }}" class="btn add-btn"><i class="fa fa-plus"></i> Add Supplier</a>
 				</div>
+				@endcan
 			</div>
 		</div>
 		<!-- /Page Header -->
@@ -60,9 +62,12 @@
 									<td>{{ $supplier->supplier_address }}</td>
 									<td>
 										
+										@can('suppliers.edit')
 										<a href="{{ route('suppliers.edit', $supplier->id) }}" class="btn btn-info"><i class="fa fa-edit"></i></a>
-
+										@endcan
+										@can('suppliers.delete')
 										<a href="{{ route('suppliers.delete', $supplier->id) }}" class="btn btn-danger" id="delete"><i class="fa fa-trash"></i></a>
+										@endcan
 
 									</td>
 								</tr>

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\backend;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\Brand;
@@ -14,6 +15,9 @@ class ProductController extends Controller
 {
     public function ProductView(){
 
+        abort_if(Gate::denies('product.view'), 403);
+
+
         $data['allData'] = Product::all();
 
         return view('backend.product.view_product', $data);
@@ -21,6 +25,9 @@ class ProductController extends Controller
     }
 
     public function ProductAdd(){
+
+        abort_if(Gate::denies('product.add'), 403);
+
 
         $data['brands'] = Brand::all();
         $data['categories'] = Category::all();
@@ -79,6 +86,9 @@ class ProductController extends Controller
 
     public function ProductEdit($id){
 
+        abort_if(Gate::denies('product.edit'), 403);
+
+
         $data['editData'] = Product::find($id);
         $data['brands'] = Brand::all();
         $data['categories'] = Category::all();
@@ -131,6 +141,9 @@ class ProductController extends Controller
 
     public function ProductDelete($id){
 
+        abort_if(Gate::denies('product.delete'), 403);
+
+
         $product = Product::find($id);
         $product->delete();
 
@@ -147,6 +160,9 @@ class ProductController extends Controller
 
     public function ProductDetails($id){
 
+        abort_if(Gate::denies('product.details'), 403);
+
+
         $data['detailsData'] = Product::find($id);
 
         return view('backend.product.details_product', $data);
@@ -154,6 +170,9 @@ class ProductController extends Controller
     }
 
     public function pdf(){
+
+        abort_if(Gate::denies('product.pdf'), 403);
+
 
         $data['allData'] = Product::all();
 

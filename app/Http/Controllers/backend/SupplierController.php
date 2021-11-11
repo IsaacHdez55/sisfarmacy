@@ -4,11 +4,15 @@ namespace App\Http\Controllers\backend;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 use App\Models\Supplier;
 
 class SupplierController extends Controller
 {
     public function SupplierView(){
+
+        abort_if(Gate::denies('supplier.view'), 403);
+
 
         $data['allData'] = Supplier::all();
 
@@ -17,6 +21,9 @@ class SupplierController extends Controller
     }
 
     public function SupplierAdd(){
+
+        abort_if(Gate::denies('suppliers.add'), 403);
+
 
         return view('backend.supplier.add_supplier');
 
@@ -58,6 +65,9 @@ class SupplierController extends Controller
 
     public function SupplierEdit($id){
 
+        abort_if(Gate::denies('suppliers.edit'), 403);
+
+
         $editData = Supplier::find($id);
         return view('backend.supplier.edit_supplier',compact('editData'));
 
@@ -90,6 +100,9 @@ class SupplierController extends Controller
 
     public function SupplierDelete($id){
 
+        abort_if(Gate::denies('suppliers.delete'), 403);
+
+
         $supplier = Supplier::find($id);
         $supplier->delete();
 
@@ -105,6 +118,9 @@ class SupplierController extends Controller
     }
 
     public function SupplierProfile($id){
+
+        abort_if(Gate::denies('suppliers.profile'), 403);
+
 
         $editData = Supplier::find($id);
 

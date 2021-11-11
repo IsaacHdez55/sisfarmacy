@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\backend;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Http\Request;  
 use App\Models\Purchases;
 use App\Models\PurchasesDetails;
@@ -16,6 +17,9 @@ class PurchasesController extends Controller
 {
     public function PurchasesView(){
 
+        abort_if(Gate::denies('purchases.view'), 403);
+
+
         $data['allData'] = Purchases::all();
 
         return view('backend.purchases.view_purchases', $data);
@@ -23,6 +27,9 @@ class PurchasesController extends Controller
     }
 
     public function PurchaseAdd(){
+
+        abort_if(Gate::denies('purchases.add'), 403);
+
 
         $data['suppliers'] = Supplier::all();
         $data['products'] = Product::all();
@@ -97,25 +104,12 @@ class PurchasesController extends Controller
 
     }
 
-    public function ProductDelete($id){
-
-        $product = Product::find($id);
-        $product->delete();
-
-        $notification = array(
-
-            'message' => 'Product Deleted Successfully',
-            'alert-type' => 'info',
-
-        );
-
-        return redirect()->route('product.view')->with($notification);
-
-    }
-
     public function PurchaseDetails($id){
 
-        // $data['detailsData'] = Purchases::find($id);
+        abort_if(Gate::denies('purchases.details'), 403);
+
+
+        $data['detailData'] = Purchases::find($id);
 
         $data['detailsData'] = PurchasesDetails::where('purchases_id',$id)->get();
 
@@ -124,6 +118,9 @@ class PurchasesController extends Controller
     }
 
     public function pdf($id){
+
+        abort_if(Gate::denies('purchases.pdf'), 403);
+
 
         $data['detailData'] = Purchases::find($id);
 
@@ -137,6 +134,9 @@ class PurchasesController extends Controller
 
     public function change_status(Purchases $purchase)
     {
+
+        abort_if(Gate::denies('purchases.change_status'), 403);
+        
 
         if ($purchase->purchases_status == 'pending') {
 

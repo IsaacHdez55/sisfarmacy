@@ -7,6 +7,7 @@
 @php
 
 $invoice = DB::table('invoices')->first();
+$company = DB::table('companies')->first();
 
 @endphp
 
@@ -42,13 +43,13 @@ $invoice = DB::table('invoices')->first();
 					<div class="card-body">
 						<div class="row">
 							<div class="col-sm-6 m-b-20">
-								{{-- DATOS DE LA EMPRESA --}}
+								{{-- COMPANY INFORMATION --}}
 								<img src="{{ url('upload/settings_image/'.$invoice->invoice_logo) }}" class="inv-logo" alt="">
 	 							<ul class="list-unstyled">
-									<li>Dreamguy's Technologies</li>
-									<li>3864 Quiet Valley Lane,</li>
-									<li>Sherman Oaks, CA, 91403</li>
-									<li>GST No:</li>
+									<li>{{ $company->name }}</li>
+									<li>{{ $company->address }}</li>
+									<li>{{ $company->email }}</li>
+									<li>Phone: {{ $company->phone }}</li>
 								</ul>
 							</div>
 							<div class="col-sm-6 m-b-20">
@@ -56,9 +57,38 @@ $invoice = DB::table('invoices')->first();
 									<h3 class="text-uppercase">Invoice {{ $detailsData['0']['purchases']['purchases_reference_number']  }}</h3>
 									<ul class="list-unstyled">
 										<li>Date: <span>{{ $detailsData['0']['purchases']['purchases_date_purchase']  }}</span></li>
-										<li>Status: <span>{{ $detailsData['0']['purchases']['purchases_status']  }}</span></li>
+										<li>
+
+											@if ($detailsData['0']['purchases']['purchases_status'] == "pending")
+
+												Status: <button class="btn btn-warning btn-sm">{{ $detailsData['0']['purchases']['purchases_status']  }}</button>
+												
+											@elseif($detailsData['0']['purchases']['purchases_status'] == "requested")
+
+												Status: <button class="btn btn-info btn-sm">{{ $detailsData['0']['purchases']['purchases_status']  }}</button>
+
+											@elseif($detailsData['0']['purchases']['purchases_status'] == "received")
+
+												Status: <button class="btn btn-success btn-sm">{{ $detailsData['0']['purchases']['purchases_status']  }}</button>
+												
+											@endif
+											
+										</li>
 									</ul>
 								</div>
+							</div>
+							<div class="col-sm-6 m-b-20">
+								{{-- SUPPLIER INFORMATION --}}
+								<h3>Invoice To:</h3>
+	 							<ul class="list-unstyled">
+									<li><span style="font-weight: bold;">Name:</span> {{ $detailData->suppliers->supplier_name }}</li>
+									<li><span style="font-weight: bold;">Identification:</span> {{ $detailData->suppliers->supplier_identification }}</li>
+									<li><span style="font-weight: bold;">Name Company:</span> {{ $detailData->suppliers->supplier_name_company }}</li>
+									<li><span style="font-weight: bold;">Addres:</span> {{ $detailData->suppliers->supplier_address }}</li>
+									<li><span style="font-weight: bold;">Phone:</span> {{ $detailData->suppliers->supplier_phone }}</li>
+									<li><span style="font-weight: bold;">Email:</span> {{ $detailData->suppliers->supplier_email }}</li>
+
+								</ul>
 							</div>
 						</div>
 						<div class="table-responsive">

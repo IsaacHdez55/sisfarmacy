@@ -3,12 +3,16 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Http\Request;
 use App\Models\Location;
 
 class LocationController extends Controller
 {
     public function LocationView(){
+
+        abort_if(Gate::denies('location.view'), 403);
+        
 
         $data['allData'] = Location::all();
 

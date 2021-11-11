@@ -20,9 +20,11 @@
 						<li class="breadcrumb-item active">Manage Client List</li>
 					</ul>
 				</div>
+				@can('clients.add')
 				<div class="col-auto float-right ml-auto">
 					<a href="{{ route('clients.add') }}" class="btn add-btn"><i class="fa fa-plus"></i> Add Client</a>
 				</div>
+				@endcan
 			</div>
 		</div>
 		<!-- /Page Header -->
@@ -61,9 +63,12 @@
 									<td>{{ $client->client_last_pruchase }}</td>
 									<td>
 										
+										@can('clients.edit')
 										<a href="{{ route('clients.edit', $client->id) }}" class="btn btn-info"><i class="fa fa-edit"></i></a>
-
+										@endcan
+										@can('clients.delete')
 										<a href="{{ route('clients.delete', $client->id) }}" class="btn btn-danger" id="delete"><i class="fa fa-trash"></i></a>
+										@endcan
 
 									</td>
 								</tr>

@@ -3,12 +3,15 @@
 namespace App\Http\Controllers\backend;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Http\Request;
 use App\Models\Category;
 
 class CategoryController extends Controller
 {
     public function CategoriesView(){
+
+        abort_if(Gate::denies('categories.view'), 403);
 
         $data['allData'] = Category::all();
 
@@ -17,6 +20,7 @@ class CategoryController extends Controller
     }
 
     public function CategoriesAdd(){
+        abort_if(Gate::denies('categories.add'), 403);
 
         return view('backend.categories.add_category');
 
@@ -50,6 +54,7 @@ class CategoryController extends Controller
     }
 
     public function CategoriesEdit($id){
+        abort_if(Gate::denies('categories.edit'), 403);
 
         $editData = Category::find($id);
 
@@ -78,6 +83,7 @@ class CategoryController extends Controller
     }
 
     public function CategoriesDelete($id){
+        abort_if(Gate::denies('categories.delete'), 403);
 
         $category = Category::find($id);
         $category->delete();

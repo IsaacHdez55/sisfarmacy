@@ -3,12 +3,16 @@
 namespace App\Http\Controllers\backend;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Http\Request;
 use App\Models\Brand;
 
 class BrandController extends Controller
 {
     public function BrandView(){
+
+        abort_if(Gate::denies('brands.view'), 403);
+
 
         $data['allData'] = Brand::all();
 
@@ -17,6 +21,8 @@ class BrandController extends Controller
     }
 
     public function BrandAdd(){
+
+        abort_if(Gate::denies('brands.add'), 403);
 
         return view('backend.brand.add_brand');
 
@@ -50,6 +56,8 @@ class BrandController extends Controller
 
     public function BrandEdit($id){
 
+        abort_if(Gate::denies('brands.edit'), 403);
+
         $editData = Brand::find($id);
 
         return view('backend.brand.edit_brand',compact('editData'));
@@ -76,6 +84,8 @@ class BrandController extends Controller
 
     }
     public function BrandDelete($id){
+
+        abort_if(Gate::denies('brands.delete'), 403);
 
         $category = Brand::find($id);
         $category->delete();

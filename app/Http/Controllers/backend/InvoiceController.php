@@ -3,12 +3,15 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Http\Request;
 use App\Models\Invoice;
 
 class InvoiceController extends Controller
 {
     public function InvoiceView(){
+
+        abort_if(Gate::denies('invoice.view'), 403);
 
         $data['allData'] = Invoice::all();
 
@@ -21,6 +24,7 @@ class InvoiceController extends Controller
         $data = Invoice::find($id);
 
         $data->prefix = $request->prefix;
+        $data->tax = $request->tax;
 
         if ($request->file('invoice_logo')) {
             

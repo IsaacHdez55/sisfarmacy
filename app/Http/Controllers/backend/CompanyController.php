@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Http\Request; 
 use App\Models\Company;
 
@@ -10,6 +11,9 @@ use App\Models\Company;
 class CompanyController extends Controller
 {
    public function CompanyView(){
+
+        abort_if(Gate::denies('company.view'), 403);
+    
 
         $data['allData'] = Company::all();
 

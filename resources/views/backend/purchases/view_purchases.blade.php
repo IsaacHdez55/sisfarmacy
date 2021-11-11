@@ -20,9 +20,11 @@
 						<li class="breadcrumb-item active">Manage Purchase List</li>
 					</ul>
 				</div>
+				@can('purchases.add')
 				<div class="col-auto float-right ml-auto">
 					<a href="{{ route('purchase.add') }}" class="btn add-btn"><i class="fa fa-plus"></i> Add Purchase</a>
 				</div>
+				@endcan
 			</div>
 
 		</div>
@@ -74,9 +76,12 @@
 									<td>{{ number_format($purchase->purchases_grand_total) }}</td>
 									<td>
 										
+										@can('purchases.details')
 										<a href="{{ route('purchase.details', $purchase->id) }}" class="btn btn-success"><i class="fa fa-eye"></i></a>
-
+										@endcan
+										@can('purchases.pdf')
 										<a href="{{ route('purchase.pdf', $purchase->id) }}" class="btn btn-danger"><i class="fa fa-file"></i></a>
+										@endcan
 
 									</td>
 								</tr>

@@ -1,6 +1,7 @@
 @php
 
 $invoice = DB::table('invoices')->first();
+$company = DB::table('companies')->first();
 
 @endphp
 
@@ -131,15 +132,15 @@ $invoice = DB::table('invoices')->first();
         <table class="mt" cellpadding="0" cellspacing="0">
             <tr>
                 <td>
-                    <div>The Best Company</div>
-                    <div>Main Avenue #50</div>
-                    <div>Phone: 1900-0000</div>
-                    <div>Santa Cruz - Bolivia</div>
+                    <div>{{ $company->name }}</div>
+                    <div>{{ $company->address }}</div>
+                    <div>{{ $company->email }}</div>
+                    <div>Phone: {{ $company->phone }}</div>
                 </td>
             </tr>
         </table>
 
-        {{-- customer information --}}
+        {{-- supplier information --}}
         <div class="mt">
         	<h3>Invoice to:</h3>
             <div><span class="bold">Name:</span> {{ $detailData->suppliers->supplier_name }}</div>

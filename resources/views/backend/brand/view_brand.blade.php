@@ -20,9 +20,11 @@
 						<li class="breadcrumb-item active">Manage Brand List</li>
 					</ul>
 				</div>
+				@can('brands.add')
 				<div class="col-auto float-right ml-auto">
 					<a href="{{ route('brand.add') }}" class="btn add-btn"><i class="fa fa-plus"></i> Add Brand</a>
 				</div>
+				@endcan
 			</div>
 		</div>
 		<!-- /Page Header -->
@@ -50,11 +52,12 @@
 									<td>{{ $brand->brand_name }}</td>
 									<td>{{ $brand->brand_description }}</td>
 									<td>
-										
+@can('brands.edit')
 										<a href="{{ route('brand.edit', $brand->id) }}" class="btn btn-info"><i class="fa fa-edit"></i></a>
-
+@endcan
+@can('brands.delete')
 										<a href="{{ route('brand.delete', $brand->id) }}" class="btn btn-danger" id="delete"><i class="fa fa-trash"></i></a>
-
+@endcan
 									</td>
 								</tr>
 

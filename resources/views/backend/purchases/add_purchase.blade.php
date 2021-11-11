@@ -1,6 +1,7 @@
 @php
 
 $user = DB::table('users')->where('id',Auth::user()->id)->first();
+$invoice = DB::table('invoices')->first();
 
 @endphp
 
@@ -202,7 +203,7 @@ $user = DB::table('users')->where('id',Auth::user()->id)->first();
 										<tr>
 											<td colspan="5" class="text-right">Tax</td>
 											<td style="text-align: right; padding-right: 30px;width: 230px">
-												<input class="form-control text-right" name="purchases_tax" id="purchases_tax" value="40" readonly type="number">
+												<input class="form-control text-right" name="purchases_tax" id="purchases_tax" value="{{ $invoice->tax }}" readonly type="number">
 											</td>
 										</tr>
 										<tr>

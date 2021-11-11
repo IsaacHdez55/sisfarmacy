@@ -37,13 +37,20 @@
 								<div class="col-md-6">
 
 <div class="form-group">
-	<label class="">User Type <span class="text-danger">*</span></label>
-	<select class="form-control" name="usertype" id="usertype" required>
-		<option value="" selected disabled>-- Select Type --</option>
-		<option value="Admin" {{ ($editData->usertype == "Admin" ? "selected" : "") }}>Admin</option>
-		<option value="Seller" {{ ($editData->usertype == "Seller" ? "selected" : "") }}>Seller</option>
+	<label class="">User Rol <span class="text-danger">*</span></label>
+	<select class="form-control" name="role" id="role" required>
+		<option value="" selected disabled>-- Select Rol --</option>
+		@foreach ($roles as $role)
+
+			<option value="{{ $role->id }}" {{ ($editData->roles[0]['id'] == $role->id ? "selected" : "") }}>{{ $role->name }}</option>
+			
+		@endforeach
+
 	</select>
 </div>
+
+
+
 								</div>{{-- End col-md-6 --}}
 
 								<div class="col-md-6">
@@ -51,7 +58,7 @@
 <div class="form-group">
 	<label class="">User Name<span class="text-danger">*</span></label>
 	<div class="">
-		<input type="text" name="name" class="form-control" pattern="^[a-zA-Z]"  title="Special characters are not allowed" value="{{ $editData->name }}" required>
+		<input type="text" name="name" class="form-control"  title="Special characters are not allowed" value="{{ $editData->name }}" required>
 	</div>
 </div>
 
