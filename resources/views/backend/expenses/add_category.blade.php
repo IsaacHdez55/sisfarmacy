@@ -16,7 +16,7 @@
 					<h3 class="page-title">Add Expense Category</h3>
 					<ul class="breadcrumb">
 						<li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Dashboard</a></li>
-						<li class="breadcrumb-item"><a href="{{ route('category.view') }}">Manage Expense Category List</a></li>
+						<li class="breadcrumb-item"><a href="{{ route('expense.category.view') }}">Manage Expense Category List</a></li>
 						<li class="breadcrumb-item active">Add Expense Category</li>
 					</ul>
 				</div>
@@ -28,7 +28,7 @@
 			<div class="col-md-12">
 				<div class="card">
 					<div class="card-body">
-						<form action="{{ route('category.store') }}" method="post">
+						<form action="{{ route('expense.category.store') }}" method="post">
 							
 							@csrf
 
@@ -73,7 +73,7 @@
 
 							<div class="text-right">
 								<input type="submit" class="btn btn-primary" value="Submit" required>
-								<a href="{{ route('category.view') }}" class="btn btn-secondary"> Cancel</a>
+								<a href="{{ route('expense.category.view') }}" class="btn btn-secondary"> Cancel</a>
 							</div>
 						</form>
 					</div>

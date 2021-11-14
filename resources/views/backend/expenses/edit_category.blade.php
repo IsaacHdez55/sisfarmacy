@@ -16,7 +16,7 @@
 					<h3 class="page-title">Edit Expense Category</h3>
 					<ul class="breadcrumb">
 						<li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Dashboard</a></li>
-						<li class="breadcrumb-item"><a href="{{ route('category.view') }}">Manage Expense Category List</a></li>
+						<li class="breadcrumb-item"><a href="{{ route('expense.category.view') }}">Manage Expense Category List</a></li>
 						<li class="breadcrumb-item active">Edit Expense Category</li>
 					</ul>
 				</div>
@@ -28,7 +28,7 @@
 			<div class="col-md-12">
 				<div class="card">
 					<div class="card-body">
-						<form action="{{ route('category.update',$editData->id) }}" method="post">
+						<form action="{{ route('expense.category.update',$editData->id) }}" method="post">
 							
 							@csrf
 
@@ -58,7 +58,7 @@
 
 							<div class="text-right">
 								<input type="submit" class="btn btn-primary" value="Submit" required>
-								<a href="{{ route('category.view') }}" class="btn btn-secondary"> Cancel</a>
+								<a href="{{ route('expense.category.view') }}" class="btn btn-secondary"> Cancel</a>
 							</div>
 						</form>
 					</div>

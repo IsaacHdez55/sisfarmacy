@@ -80,9 +80,9 @@ $route = Route::current()->getName();
 		        <li class="submenu {{ ($prefix == '/expenses')?'active':'' }}" >
 		            <a href=""><i class="la la-minus-circle"></i> <span> Manage Expenses</span> <span class="menu-arrow"></span></a>
 		            <ul style="display: none;">
-		              {{-- <li><a class="{{ ($route == 'expenses.view')?'active':'' }}" href="{{ route('categories.view') }}"> Categories</a><li> --}}
+		              <li><a class="{{ ($route == 'expenses.view')?'active':'' }}" href="{{ route('expenses.view') }}"> Expenses</a><li>
 		            	{{-- @can('brands.view')	 --}}
-		              <li><a class="{{ ($route == 'category.view')?'active':'' }}" href="{{ route('category.view') }}"> Expense Category</a>
+		              <li><a class="{{ ($route == 'expense.category.view')?'active':'' }}" href="{{ route('expense.category.view') }}"> Expense Category</a>
 		              	{{-- @endcan --}}
 		            </ul>
 		        </li>

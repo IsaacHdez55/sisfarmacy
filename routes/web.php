@@ -14,6 +14,7 @@ use App\Http\Controllers\backend\PrintLabelsController;
 use App\Http\Controllers\backend\PurchasesController;
 use App\Http\Controllers\backend\PurchasesDetailsController;
 use App\Http\Controllers\backend\ExpenseCategoryController;
+use App\Http\Controllers\backend\ExpenseController;
 
 //Settings
 use App\Http\Controllers\backend\CompanyController;
@@ -204,21 +205,22 @@ Route::prefix('expenses')->group(function (){
 
     // Expenses Category Management Route
 
-    Route::get('/category/view', [ExpenseCategoryController::class, 'CategoryView'])->name('category.view');
-    Route::get('/category/add', [ExpenseCategoryController::class, 'CategoryAdd'])->name('category.add');
-    Route::post('/category/store', [ExpenseCategoryController::class, 'CategoryStore'])->name('category.store');
-    Route::get('/category/edit/{id}', [ExpenseCategoryController::class, 'CategoryEdit'])->name('category.edit');
-    Route::post('/category/update/{id}', [ExpenseCategoryController::class, 'CategoryUpdate'])->name('category.update');
-    Route::get('/category/delete/{id}', [ExpenseCategoryController::class, 'CategoryDelete'])->name('category.delete');
+    Route::get('/category/view', [ExpenseCategoryController::class, 'CategoryView'])->name('expense.category.view');
+    Route::get('/category/add', [ExpenseCategoryController::class, 'CategoryAdd'])->name('expense.category.add');
+    Route::post('/category/store', [ExpenseCategoryController::class, 'CategoryStore'])->name('expense.category.store');
+    Route::get('/category/edit/{id}', [ExpenseCategoryController::class, 'CategoryEdit'])->name('expense.category.edit');
+    Route::post('/category/update/{id}', [ExpenseCategoryController::class, 'CategoryUpdate'])->name('expense.category.update');
+    Route::get('/category/delete/{id}', [ExpenseCategoryController::class, 'CategoryDelete'])->name('expense.category.delete');
 
-    // Clients Management Route
+    // Expenses Management Route
 
-    Route::get('/client/view', [ClientController::class, 'ClientView'])->name('client.view');
-    Route::get('/client/add', [ClientController::class, 'ClientAdd'])->name('clients.add');
-    Route::post('/client/store', [ClientController::class, 'ClientStore'])->name('clients.store');
-    Route::get('/client/edit/{id}', [ClientController::class, 'ClientEdit'])->name('clients.edit');
-    Route::post('/client/update/{id}', [ClientController::class, 'ClientUpdate'])->name('clients.update');
-    Route::get('/client/delete/{id}', [ClientController::class, 'ClientDelete'])->name('clients.delete');
+    Route::get('/view', [ExpenseController::class, 'ExpenseView'])->name('expenses.view');
+    Route::get('/add', [ExpenseController::class, 'ExpenseAdd'])->name('expenses.add');
+    Route::post('/store', [ExpenseController::class, 'ExpenseStore'])->name('expenses.store');
+    Route::get('/edit/{id}', [ExpenseController::class, 'ExpenseEdit'])->name('expenses.edit');
+    Route::post('/update/{id}', [ExpenseController::class, 'ExpenseUpdate'])->name('expenses.update');
+    Route::get('/delete/{id}', [ExpenseController::class, 'ExpenseDelete'])->name('expenses.delete');
+    Route::get('/change_status/{expenses}', [ExpenseController::class, 'change_status'])->name('expenses.change_status');
 
 });
     

@@ -22,7 +22,7 @@
 				</div>
 				@can('brands.add')
 				<div class="col-auto float-right ml-auto">
-					<a href="{{ route('category.add') }}" class="btn add-btn"><i class="fa fa-plus"></i> Add Expense Category</a>
+					<a href="{{ route('expense.category.add') }}" class="btn add-btn"><i class="fa fa-plus"></i> Add Expense Category</a>
 				</div>
 				@endcan
 			</div>
@@ -53,10 +53,10 @@
 									<td>{{ $expense_category->code }}</td>
 									<td>
 @can('brands.edit')
-										<a href="{{ route('category.edit', $expense_category->id) }}" class="btn btn-info"><i class="fa fa-edit"></i></a>
+										<a href="{{ route('expense.category.edit', $expense_category->id) }}" class="btn btn-info"><i class="fa fa-edit"></i></a>
 @endcan
 @can('brands.delete')
-										<a href="{{ route('category.delete', $expense_category->id) }}" class="btn btn-danger" id="delete"><i class="fa fa-trash"></i></a>
+										<a href="{{ route('expense.category.delete', $expense_category->id) }}" class="btn btn-danger" id="delete"><i class="fa fa-trash"></i></a>
 @endcan
 									</td>
 								</tr>

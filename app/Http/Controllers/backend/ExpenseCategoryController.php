@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Gate;
 use App\Models\ExpenseCategory;
 use Illuminate\Http\Request;
 
@@ -50,7 +51,7 @@ class ExpenseCategoryController extends Controller
 
         );
 
-        return redirect()->route('category.view')->with($notification);
+        return redirect()->route('expense.category.view')->with($notification);
 
     }
 
@@ -80,7 +81,7 @@ class ExpenseCategoryController extends Controller
 
         );
 
-        return redirect()->route('category.view')->with($notification);
+        return redirect()->route('expense.category.view')->with($notification);
 
     }
 
@@ -98,7 +99,7 @@ class ExpenseCategoryController extends Controller
 
         );
 
-        return redirect()->route('category.view')->with($notification);
+        return redirect()->route('expense.category.view')->with($notification);
 
     }
 }
